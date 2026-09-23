@@ -43,6 +43,20 @@ public class View extends JFrame {
         layout.getComputerOutput().setText("" + stats.getComputerZahl());
         layout.getGesamtpunkteLabel().setText("" + stats.getGesamtPunkte());
 
+        if (stats.getRundenErgebnis() > 0 || stats.hatGewonnen()) {
+            layout.getRundenergebnisLabel().setBackground(Color.GREEN);
+            layout.getGesamtpunkteLabel().setBackground(Color.GREEN);
+
+        } else if (stats.getRundenErgebnis() < 0 || stats.hatVerloren()) {
+            layout.getRundenergebnisLabel().setBackground(Color.RED);
+            layout.getGesamtpunkteLabel().setBackground(Color.RED);
+
+        } else {
+            layout.getRundenergebnisLabel().setBackground(Color.WHITE);
+            layout.getGesamtpunkteLabel().setBackground(Color.WHITE);
+        }
+
+
         layout.getUserInput().setEditable(false);
 
         if (stats.hatVerloren()) {
@@ -64,6 +78,7 @@ public class View extends JFrame {
 
             if(zahl < 1 || zahl > 9) {
                 layout.getRundenergebnisLabel().setForeground(Color.RED);
+                layout.getRundenergebnisLabel().setBackground(Color.WHITE);
                 layout.getRundenergebnisLabel().setText("Ungültige Eingabe !");
                 return false;
             }
@@ -73,6 +88,7 @@ public class View extends JFrame {
 
         }catch (NumberFormatException ex) {
             layout.getRundenergebnisLabel().setForeground(Color.RED);
+            layout.getRundenergebnisLabel().setBackground(Color.WHITE);
             layout.getRundenergebnisLabel().setText("Ungültige Eingabe !");
             return false;
         }
