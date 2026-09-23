@@ -24,8 +24,13 @@ public class View extends JFrame {
     public void startGame() {
         layout.getRundenergebnisLabel().setForeground(Color.BLACK);
         layout.getRundenergebnisLabel().setText("Tippe eine Zahl von 1 bis 9");
+
         layout.getUserInput().setText("");
+        layout.getUserInput().setEditable(true);
+
         layout.getComputerOutput().setText("");
+
+        layout.getNochEinmalButton().setEnabled(false);
     }
     public void setStats(GewinnModel stats) {
 
@@ -34,16 +39,23 @@ public class View extends JFrame {
         } else {
             layout.getRundenergebnisLabel().setText("" + stats.getRundenErgebnis());
         }
+
         layout.getComputerOutput().setText("" + stats.getComputerZahl());
         layout.getGesamtpunkteLabel().setText("" + stats.getGesamtPunkte());
+
+        layout.getUserInput().setEditable(false);
+
         if (stats.hatVerloren()) {
             layout.getRundenergebnisLabel().setText("Verloren");
-        }
+            layout.getNochEinmalButton().setEnabled(false);
 
-        if (stats.hatGewonnen()) {
+        } else if (stats.hatGewonnen()) {
             layout.getRundenergebnisLabel().setText("Gewonnen");
-        }
+            layout.getNochEinmalButton().setEnabled(false);
 
+        } else {
+            layout.getNochEinmalButton().setEnabled(true);
+        }
     }
 
     public boolean pruefeEingabe() {
