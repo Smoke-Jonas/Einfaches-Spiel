@@ -23,6 +23,7 @@ public class View extends JFrame {
 
     public void startGame() {
         layout.getRundenergebnisLabel().setForeground(Color.BLACK);
+        layout.getRundenergebnisLabel().setBackground(Color.WHITE);
         layout.getRundenergebnisLabel().setText("Tippe eine Zahl von 1 bis 9");
 
         layout.getUserInput().setText("");
