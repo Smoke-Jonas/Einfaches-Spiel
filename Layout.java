@@ -2,6 +2,8 @@ package EinfachesSpiel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+
 /**
  * This class contains the Layout for this game.
  * @author Jonas Podlas
@@ -48,6 +50,20 @@ public class Layout extends JPanel{
         computer.setBackground(Color.WHITE);
         computer.setHorizontalAlignment(SwingConstants.CENTER);
         du.setHorizontalAlignment(SwingConstants.CENTER);
+        du.addActionListener(controller);
+        du.setActionCommand("enter");
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke("ENTER"),
+                "enterOutside"
+        );
+        this.getActionMap().put("enterOutside", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.actionPerformed(
+                        new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "enterOutside")
+                );
+            }
+        });
         inputMitte.add(du);
         inputMitte.add(computer);
 
@@ -59,10 +75,12 @@ public class Layout extends JPanel{
         nochEinmal.setActionCommand("again");
 
         this.add(buttonUnten, BorderLayout.SOUTH);
-
-
-
-
-
     }
+
+    public JLabel getRundenergebnisLabel() { return this.zahlEintippen;}
+    public JLabel getGesamtpunkteLabel() { return this.gesamtPunkte;}
+    public JTextField getUserInput() { return this.du; }
+
+    public JTextField getComputerOutput() { return this.computer;}
+    public JButton getNochEinmalButton() { return this.nochEinmal;}
 }

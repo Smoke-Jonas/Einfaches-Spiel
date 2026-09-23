@@ -20,6 +20,17 @@ public class GewinnModel {
      * Getter-Method for the current points the player has achieved.
      * @return the current points
      */
+
+    public void setSpielerZahl(int zahl) {
+        if(zahl >= 1 && zahl <= 9) {
+            spielerZahl = zahl;
+        }
+    }
+
+    public void setGesamtPunkte(int zahl) {
+        gesamtPunkte = zahl;
+    }
+
     public int getGesamtPunkte() {
         return this.gesamtPunkte;
     }
